@@ -36,7 +36,7 @@ It have the following functionality:
 
 <h2 align="center">_Technologies_</h2>
 
-[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Spring_Framework_Logo_2018.svg/1280px-Spring_Framework_Logo_2018.svg.png) width = "30px"](https://spring.io)
+[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Spring_Framework_Logo_2018.svg/1280px-Spring_Framework_Logo_2018.svg.png width="30px")](https://spring.io)
 
 - Java 17
 - Maven
