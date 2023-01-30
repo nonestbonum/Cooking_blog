@@ -1,6 +1,6 @@
-<h2 align="center"> Cooking blog </h2>
+# Cooking blog 
 
-<h3 align="center">The application allows users to create their own food blogs</h3> 
+## _The application allows users to create their own food blogs_
 
 It have the following functionality:
 
@@ -20,8 +20,8 @@ It have the following functionality:
 
   Work with users and accounts:
   
-    • addition;
-    • removal;
-    • editing;
-    • ban
+    - addition;
+    - removal;
+    - editing;
+    - ban
     
