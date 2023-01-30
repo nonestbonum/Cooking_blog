@@ -29,7 +29,7 @@ It have the following functionality:
 
 - Java 17
 - Maven
-- Java ee
+- Java EE
 - Spring boot
 - Spring security
 - Lombok
