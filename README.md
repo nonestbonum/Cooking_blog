@@ -16,9 +16,7 @@ It have the following functionality:
  - Creating, deleting, editing a user's blog. Creating, deleting, editing a recipe.
  - Ability to comment on other people's recipes. Ability to evaluate someone else's recipe.
   
-4. The presence of an "admin panel" for managing the site:
-
-  Work with users and accounts:
+4. The presence of an "admin panel" for managing the sitea and work with users and accounts:
   
  - addition;
  - removal;
