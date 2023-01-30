@@ -29,7 +29,9 @@ It have the following functionality:
 
 - Java 17
 - Maven
-- Java EE
+- PostgreSQL
 - Spring boot
 - Spring security
 - Lombok
+- Hiberntate
+- JPA
