@@ -1,0 +1,99 @@
+body {
+    background-color: bisque;
+    font-family: 'Alumni Sans', sans-serif;
+    margin: 0;
+}
+
+.back {
+    position: relative;
+    overflow: hidden;
+}
+
+.back .goBack {
+    left: 2vw;
+    top: 1.5vw;
+    position: absolute;
+}
+.back .changeUsername{
+    right: 2vw;
+    top: 1.5vw;
+    position: absolute;
+}
+.changeUsername{
+    display: flex;
+    flex-direction: row;
+}
+
+.goBack button, .changeUsername button {
+    border: 1.5px solid bisque;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    color: bisque;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    opacity: 60%;
+}
+
+.newRecipe {
+    position: relative;
+    top: 6.5vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.newRecipe button {
+    border: 0.35vw solid black;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 4vw;
+}
+
+.goBack button:hover {
+    color: white;
+}
+
+.back img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.title {
+    position: absolute;
+    font-family: 'Big Shoulders Inline Display', cursive;
+    color: bisque;
+    font-size: 10vw;
+    top: 12vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+article {
+    flex: 350px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.recipes {
+    width: 100%;
+    top: 40vw;
+    position: absolute;
+}
+h2{
+    margin-bottom: 0;
+}

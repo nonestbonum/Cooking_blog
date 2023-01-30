@@ -1,0 +1,172 @@
+
+body {
+    background-color: bisque;
+    font-family: 'Alumni Sans', sans-serif;
+    margin: 0;
+}
+
+.back {
+    position: relative;
+    overflow: hidden;
+}
+
+.back .goBack {
+    left: 2vw;
+    top: 1.5vw;
+    position: absolute;
+}
+
+.goBack button {
+    border: 1.5px solid bisque;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    color: bisque;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    opacity: 60%;
+}
+
+.goBack button:hover {
+    color: white;
+}
+
+.back img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.title {
+    position: absolute;
+    font-family: 'Big Shoulders Inline Display', cursive;
+    color: bisque;
+    font-size: 10vw;
+    top: 12vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recipe_text {
+    width: 70%;
+    font-size: 2.5vw;
+    white-space: pre-wrap;
+    margin: 5vw;
+}
+
+.recName {
+    margin-bottom: 5vw;
+    font-size: 5vw;
+    text-align: center;
+    margin-top: 10vw;
+}
+
+.photo {
+    text-align: center;
+    width: 100%;
+}
+
+.star-rating {
+    font-size: 0;
+}
+
+.star-rating__wrap {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.star-rating__wrap:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.star-rating__ico {
+    float: right;
+    padding-left: 2px;
+    cursor: pointer;
+    color: #FFB300;
+}
+
+.star-rating__ico:last-child {
+    padding-left: 0;
+}
+
+.star-rating__input {
+    display: none;
+}
+
+.star-rating__ico:hover:before,
+.star-rating__ico:hover ~ .star-rating__ico:before,
+.star-rating__input:checked ~ .star-rating__ico:before {
+    content: "\f005";
+}
+
+.rating button,  .yourComment button{
+    border: 1.5px solid black;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    color: black;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+}
+
+.rating button:hover , .yourComment button:hover{
+    color: white;
+}
+
+.rating {
+    text-align: center;
+    position: relative;
+    margin-bottom: 3vw;
+}
+
+.form-group {
+    font-size: 2vw;
+}
+.comments{
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+}
+
+.blogT{
+    font-size: 3vw;
+    margin: 2vw;
+}
+.commT{
+    font-size: 2vw;
+}
+textarea {
+    width: 100%;
+    height: 5vw;
+    text-align: left;
+    border-bottom-style: solid;
+    border-color: black;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: bisque;
+    color: black;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    padding-bottom: 1vw;
+}
+::placeholder {
+    color: black;
+}
+.yourComment{
+    text-align: center;
+}

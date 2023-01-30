@@ -1,0 +1,151 @@
+
+body {
+    background-color: bisque;
+    font-family: 'Alumni Sans', sans-serif;
+    margin: 0;
+}
+
+.back {
+    position: relative;
+    overflow: hidden;
+}
+
+.back .goBack {
+    left: 2vw;
+    top: 1.5vw;
+    position: absolute;
+}
+
+.goBack button {
+    border: 1.5px solid bisque;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    color: bisque;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    opacity: 60%;
+}
+
+.goBack button:hover {
+    color: white;
+}
+
+.back img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.title {
+    position: absolute;
+    font-family: 'Big Shoulders Inline Display', cursive;
+    color: bisque;
+    font-size: 10vw;
+    top: 12vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.newRecipe {
+    position: relative;
+    top: 6.5vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.newRecipe button {
+    border: 0.35vw solid black;
+    border-radius: 25px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 0;
+    background-color: rgba(70, 36, 17, 0.001);
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 4vw;
+}
+
+.creation {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 60vw;
+    position: absolute;
+    font-size: 2vw;
+    text-align: left;
+}
+
+input[type='file'] {
+    color: transparent;
+    text-align: right;
+}
+
+.recName input {
+    text-align: left;
+    border-bottom-style: solid;
+    border-color: black;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: bisque;
+    color: black;
+    width: 20vw;
+    height: 2vw;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    padding-bottom: 1vw;
+}
+
+::placeholder {
+    color: black;
+}
+
+textarea {
+    width: 60vw;
+    height: 20vw;
+}
+
+.recText {
+    background-color: bisque;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    color: black;
+    border: 0.2vw solid black;
+}
+
+.fail {
+    font-size: 3vw;
+    color: red;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 38vw;
+    position: absolute;
+}
+
+.file_input_div {
+    position: relative;
+
+    height: 3.5vw;
+    overflow: hidden;
+}
+
+.file_input_div button {
+    background-color: bisque;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    border: 2px solid black;
+    font-size: 2vw;
+    font-family: 'Alumni Sans', sans-serif;
+
+}
+
+.file_input_hidden {
+    opacity: 0;
+    position: relative;
+    width: 5vw;
+    height: 2vw;
+}

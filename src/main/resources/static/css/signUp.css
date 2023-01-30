@@ -1,0 +1,110 @@
+body {
+    font-family: 'Alumni Sans', sans-serif;
+    text-align: center;
+    background-color: black;
+    margin: 0;
+    color: bisque;
+}
+
+.cont {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.cont img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+    float: left;
+
+}
+
+.cont .cookingBlog {
+    font-size: 11vw;
+    color: bisque;
+    position: absolute;
+    top: 21vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Big Shoulders Inline Display', cursive;
+}
+
+input {
+    text-align: center;
+    border-bottom-style: solid;
+    border-color: bisque;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: black;
+    color: bisque;
+    width: 20vw;
+    height: 2vw;
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 2vw;
+    padding: 1vw;
+}
+
+table {
+    text-align: left;
+    position: absolute;
+    top: 77%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+td {
+    padding: 10px;
+    font-size: 3vw;
+}
+
+.error {
+    color: darkmagenta;
+}
+
+button {
+    background-color: rgba(70, 36, 17, 0.001);
+    border: 3px solid black;
+    color: bisque;
+    /*padding: 0.1vw 1vw;*/
+    text-align: center;
+    /*margin: 1.3vw;*/
+    font-size: 3vw;
+    font-family: 'Alumni Sans', sans-serif;
+
+
+    /*position: absolute;*/
+    /*background-color: rgba(70, 36, 17, 0.001);*/
+    /*border: 2px solid white;*/
+    /*color: bisque;*/
+    /*padding: 2px 35px;*/
+    /*text-align: center;*/
+    /*font-size: 3vw;*/
+    /*margin-top: 15px;*/
+    /*font-family: 'Alumni Sans', sans-serif;*/
+}
+
+button:hover {
+    color: white;
+    font-size: 3.5vw;
+}
+
+.btns {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+p{
+    font-size: 2vw;
+    color: darkred;
+    font-family: 'Alumni Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
