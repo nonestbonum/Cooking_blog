@@ -1,6 +1,6 @@
-<h3 align="center"> Cooking blog </h3>
+<h2 align="center"> Cooking blog </h2>
 
-<h2 align="center">The application allows users to create their own food blogs</h2> 
+<h3 align="center">The application allows users to create their own food blogs</h3> 
 
 It have the following functionality:
 
