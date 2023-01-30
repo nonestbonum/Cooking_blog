@@ -19,8 +19,9 @@ It have the following functionality:
 4. The presence of an "admin panel" for managing the site:
 
   Work with users and accounts:
-    - addition;
-    - removal;
-    - editing;
-    - ban
+  
+    addition;
+    removal;
+    editing;
+    ban
     
