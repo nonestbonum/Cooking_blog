@@ -20,8 +20,8 @@ It have the following functionality:
 
   Work with users and accounts:
   
-  addition
-  removal
-  editing
+  addition;
+  removal;
+  editing;
   ban
     
