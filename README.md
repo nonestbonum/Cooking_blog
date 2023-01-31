@@ -23,7 +23,7 @@ It have the following functionality:
  - Ability to comment on other people's recipes. Ability to evaluate someone else's recipe
  
   
-4. The presence of an "admin panel" for managing the sitea and work with users and accounts:
+4. The presence of an "admin panel" for managing the sitea and work with accounts:
   
  - addition
  
