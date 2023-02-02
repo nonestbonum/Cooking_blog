@@ -46,3 +46,4 @@ It have the following functionality:
 - Lombok
 - Hiberntate
 - JPA
+- HTML/CSS
