@@ -47,3 +47,27 @@ It have the following functionality:
 - Hiberntate
 - JPA
 - HTML/CSS
+
+<h3 align="center">Start page</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.53.48.png)
+
+<h3 align="center">Top-6</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.53.58.png)
+
+<h3 align="center">Sign In</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.42.04.png)
+
+<h3 align="center">Sign Up</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.55.29.png)
+
+<h3 align="center">Your blog</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.55.02.png)
+
+h3 align="center">Create new recipe</h3>
+
+![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.55.10.png)
