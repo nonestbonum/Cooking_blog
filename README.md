@@ -68,6 +68,6 @@ It have the following functionality:
 
 ![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.55.02.png)
 
-h3 align="center">Create new recipe</h3>
+<h3 align="center">Create new recipe</h3>
 
 ![start](https://github.com/nonestbonum/cookingBlog/blob/main/screens_/Снимок%20экрана%202023-02-07%20в%2000.55.10.png)
