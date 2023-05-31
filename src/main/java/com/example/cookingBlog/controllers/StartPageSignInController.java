@@ -17,12 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/{user-id}")
 public class StartPageSignInController {
+
     private final RecipeService recipeService;
     private final BlogService blogService;
     private final CommentService commentService;
 
     @GetMapping()
     public String getStartPageSignIn(Authentication authentication, @PathVariable("user-id") String id, Model model) {
+
         if (authentication != null) {
             model.addAttribute("userId", id);
             List<Recipe> recipes = recipeService.top6();
@@ -33,6 +35,7 @@ public class StartPageSignInController {
 
     @GetMapping("/oneRecipe/{recipe_id}")
     public String getOneRecipeSignIn(Authentication authentication, @PathVariable("recipe_id") String recipe_id, @PathVariable("user-id") String user_id, Model model) {
+
         if (authentication != null) {
             if (recipeService.getRecipeById(Long.valueOf(recipe_id)).getBlog().equals(blogService.getBlogById(Long.valueOf(user_id)))) {
                 model.addAttribute("recipe_title", recipeService.getRecipeById(Long.valueOf(recipe_id)).getTitle());
@@ -57,12 +60,14 @@ public class StartPageSignInController {
 
     @PostMapping("/oneRecipe/{recipe_id}")
     public String postOneRecipe(@PathVariable String recipe_id, @RequestParam("rating") String value, @PathVariable("user-id") String user_id) {
+
         recipeService.vote(Long.valueOf(recipe_id), Integer.parseInt(value));
         return "redirect:/" + user_id + "/oneRecipe/" + recipe_id;
     }
 
     @GetMapping("/search")
     public String getSearch(@PathVariable("user-id") String parameter, Authentication authentication) {
+
         if (authentication != null) {
             return "/searchPageSignIn";
         } else return "redirect:/signIn";
@@ -71,6 +76,7 @@ public class StartPageSignInController {
 
     @PostMapping("/search")
     public String postSearch(@RequestParam("search") String searchWord, Model model, @PathVariable("user-id") String parameter) {
+
         model.addAttribute("userId", parameter);
         model.addAttribute("recipesS", recipeService.searchRecipe(searchWord));
         model.addAttribute("searchWord", searchWord);
@@ -80,12 +86,9 @@ public class StartPageSignInController {
     @PostMapping("/oneRecipe/{recipe_id}/comment")
     public String postComment(@PathVariable("recipe_id") String recipe_id,
                               @PathVariable("user-id") String user_id,
-                              Model model,
                               @RequestParam("comment_text") String comment_text) {
-        Comment comment = new Comment(blogService.getBlogById(Long.valueOf(user_id)),
-                comment_text,
-                recipeService.getRecipeById(Long.valueOf(recipe_id)));
-        commentService.saveComment(comment);
+
+        commentService.postNewComment(recipe_id, user_id, comment_text);
         return "redirect:/" + user_id + "/oneRecipe/" + recipe_id;
     }
 }

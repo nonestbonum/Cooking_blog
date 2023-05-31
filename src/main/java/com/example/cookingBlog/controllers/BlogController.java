@@ -1,6 +1,7 @@
 package com.example.cookingBlog.controllers;
 
 import com.example.cookingBlog.dto.RecipeDto;
+import com.example.cookingBlog.models.Blog;
 import com.example.cookingBlog.models.Comment;
 import com.example.cookingBlog.models.Image;
 import com.example.cookingBlog.models.Recipe;
@@ -25,16 +26,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/{user_id}/blog")
 public class BlogController {
-    private final BlogRepository blogRepository;
 
+    private final BlogRepository blogRepository;
     private final BlogService blogService;
     private final RecipeService recipeService;
-    private final ImageService imageService;
-
     private final CommentService commentService;
 
     @GetMapping("/changeUsername")
     public String getChangeUsername(Authentication authentication, @PathVariable("user_id") String id, Model model) {
+
         if (authentication != null) {
             model.addAttribute("blog_id", id);
             model.addAttribute("blog_title", blogService.getBlogById(Long.valueOf(id)).getTitle());
@@ -45,10 +45,8 @@ public class BlogController {
     @PostMapping("/changeUsername")
     public String postChangeUsername(@PathVariable("user_id") String id,
                                      @RequestParam("newTitle") String newTitle, Model model) {
-        boolean isOk = newTitle.chars()
-                .mapToObj(Character.UnicodeBlock::of)
-                .anyMatch(b -> b.equals(Character.UnicodeBlock.BASIC_LATIN));
-        if (isOk) {
+
+        if (recipeService.isValidUsername(newTitle)) {
             blogService.changeTitle(newTitle, Long.valueOf(id));
             return "redirect:/" + id + "/blog";
         } else {
@@ -61,6 +59,7 @@ public class BlogController {
 
     @GetMapping("/create")
     public String getNewRecipe(Authentication authentication, @PathVariable("user_id") String id, Model model) {
+
         if (authentication != null) {
             model.addAttribute("blog_id", id);
             model.addAttribute("blog_title", blogService.getBlogById(Long.valueOf(id)).getTitle());
@@ -74,11 +73,9 @@ public class BlogController {
                                 @RequestParam("recipe_text") String recipe_text,
                                 Model model,
                                 @PathVariable("user_id") String id) throws IOException {
+
         if (title != null && recipe_text != null && !file.isEmpty()) {
-            Image image = imageService.store(file);
-            RecipeDto recipeDto = new RecipeDto(title, recipe_text, image, blogService.getBlogById(Long.valueOf(id)));
-            Recipe recipe = recipeService.createRecipe(recipeDto);
-            imageService.setRec(recipe.getId(), image.getId());
+            recipeService.postNewRecipe(file, title, recipe_text, id);
             return "redirect:/" + id + "/blog";
         } else {
             model.addAttribute("fail", "Вы заполнили не все поля");
@@ -90,11 +87,13 @@ public class BlogController {
 
     @GetMapping
     public String getBlog(Authentication authentication, @PathVariable("user_id") String id, Model model) {
+
         if (authentication != null) {
+            Blog blog = blogService.getBlogById(Long.valueOf(id));
             model.addAttribute("blog_id", id);
-            List<Recipe> recipes = recipeService.getRecipesByDateByOneBlog(blogService.getBlogById(Long.valueOf(id)));
+            List<Recipe> recipes = recipeService.getRecipesByDateByOneBlog(blog);
             model.addAttribute("recipes", recipes);
-            model.addAttribute("blog_title", blogService.getBlogById(Long.valueOf(id)).getTitle());
+            model.addAttribute("blog_title", blog.getTitle());
             model.addAttribute("userId", id);
             return "blog";
         } else return "redirect:/signIn";
@@ -102,6 +101,7 @@ public class BlogController {
 
     @GetMapping("/myRecipe/{recipe_id}")
     public String getMyRecipe(Authentication authentication, @PathVariable("recipe_id") String recipe_id, @PathVariable("user_id") String user_id, Model model) {
+
         if (authentication != null) {
             model.addAttribute("recipe_title", recipeService.getRecipeById(Long.valueOf(recipe_id)).getTitle());
             model.addAttribute("blog_title", blogService.getBlogByRecipeId(Long.valueOf(recipe_id)).getTitle());
@@ -115,6 +115,7 @@ public class BlogController {
 
     @PostMapping("/myRecipe/{recipe_id}/delete")
     public String deleteRecipe(Authentication authentication, @PathVariable("user_id") String user_id, @PathVariable("recipe_id") String recipe_id) {
+
         if (authentication != null) {
             recipeService.deleteRecipe(Long.valueOf(recipe_id));
             return "redirect:/" + user_id + "/blog";
@@ -123,6 +124,7 @@ public class BlogController {
 
     @PostMapping("/clearBlog")
     public String clearBlog(Authentication authentication, @PathVariable String user_id) {
+
         if (authentication != null) {
             blogService.clearBlog(Long.valueOf(user_id));
             return "redirect:/" + user_id + "/blog";
@@ -134,10 +136,10 @@ public class BlogController {
                                @RequestParam("title") String title,
                                @RequestParam("file") MultipartFile file,
                                @RequestParam("recipe_text") String recipe_text) {
+
         if (title != null) recipeService.setNewTitle(Long.valueOf(recipe_id), title);
         if (!file.isEmpty()) recipeService.setNewPicture(Long.valueOf(recipe_id), file);
         recipeService.updateRecipeText(Long.valueOf(recipe_id), recipe_text);
-//        return "redirect:/" + user_id + "/blog/myRecipe/" + recipe_id;
         return "redirect:/" + user_id + "/blog";
     }
 
@@ -145,6 +147,7 @@ public class BlogController {
     public String updateRecipe(Authentication authentication,
                                @PathVariable("recipe_id") String recipe_id, @PathVariable("user_id") String user_id,
                                Model model) {
+
         if (authentication != null) {
             model.addAttribute("recipe_title", recipeService.getRecipeById(Long.valueOf(recipe_id)).getTitle());
             model.addAttribute("blog_title", blogService.getBlogById(Long.valueOf(user_id)).getTitle());

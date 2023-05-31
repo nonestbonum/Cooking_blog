@@ -22,12 +22,14 @@ public class SignUpController {
 
     @GetMapping
     public String getSignUpPage(Model model) {
+
         model.addAttribute("signUpForm", new SignUpForm());
         return "signUp";
     }
 
     @PostMapping
     public String signUp(@Valid SignUpForm form, BindingResult result, Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("signUpForm", new SignUpForm());
             model.addAttribute("fail", "Введены некорректные данные");

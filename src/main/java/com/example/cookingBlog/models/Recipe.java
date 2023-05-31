@@ -17,17 +17,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@Indexed
 @Table(name = "recipes_table")
 public class Recipe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "recipe_id")
     private Long id;
+
     @Column(name = "recipe_title")
-//    @FullTextField
     private String title;
-    //    @FullTextField
+
     @Column(columnDefinition = "text")
     private String recipe_text;
     @ManyToOne(cascade = CascadeType.REFRESH)
@@ -39,7 +39,7 @@ public class Recipe {
 
     private double rating;
 
-    @OneToOne(mappedBy = "recipe", cascade = CascadeType.REFRESH)
+    @OneToOne(mappedBy = "recipe", cascade = CascadeType.REMOVE)
     @JoinColumn(name = "image_id")
     private Image image;
 

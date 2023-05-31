@@ -1,10 +1,11 @@
-package com.example.cookingBlog.services;
+package com.example.cookingBlog.services.impl;
 
 import com.example.cookingBlog.models.Blog;
 import com.example.cookingBlog.models.Recipe;
 import com.example.cookingBlog.repositories.BlogRepository;
 import com.example.cookingBlog.repositories.ImageRepository;
 import com.example.cookingBlog.repositories.RecipeRepository;
+import com.example.cookingBlog.services.BlogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,6 @@ public class BlogServiceImpl implements BlogService {
 
     private final BlogRepository blogRepository;
     private final RecipeRepository recipeRepository;
-    private final ImageRepository imageRepository;
 
 
     @Override
@@ -27,16 +27,9 @@ public class BlogServiceImpl implements BlogService {
     public void clearBlog(Long blogId) {
         List<Long> recipesIdList = recipeRepository.getAllRecipesIdFromOneBlog(blogId);
         for (Long l : recipesIdList) {
-            imageRepository.deleteImageByRecipeId(l);
             recipeRepository.deleteRecipeById(l);
         }
     }
-
-//    @Override
-//    public void addRecipe(Long blogId, Long recipeId) {
-//        blogRepository.getById(blogId).getRecipesList()
-//                .add(recipeRepository.getById(recipeId));
-//    }
 
     @Override
     @Transactional

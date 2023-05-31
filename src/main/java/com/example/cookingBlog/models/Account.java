@@ -16,14 +16,13 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "account_table")
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Enumerated(value = EnumType.STRING)
     private Role role;
-
 
     @Column(name = "first_name")
     private String firstName;
@@ -38,8 +37,8 @@ public class Account {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "blog_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Blog blog;
+
     @Column(name = "is_banned")
     private boolean isBanned;
 

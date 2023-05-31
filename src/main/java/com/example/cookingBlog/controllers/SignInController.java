@@ -20,20 +20,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/signIn")
 public class SignInController {
-    private Long id;
-
 
     @GetMapping
     public String getSignIn(Model model) {
+
         model.addAttribute("signInForm", new SignInForm());
         return "signIn";
     }
 
     @PostMapping
     public String postSignIn(Authentication authentication, Model model, @AuthenticationPrincipal Account account) {
+
         if (authentication != null && !account.isBanned()) {
-            id = account.getId();
-            return "redirect:/" + id;
+            return "redirect:/" + account.getId();
         } else {
             model.addAttribute("signInForm", new SignInForm());
             model.addAttribute("fail", "Wrong email or password");

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class SignInForm {
+
     @Email
     @NotBlank
     private String email;
