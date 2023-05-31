@@ -26,10 +26,9 @@ public class StartPageController {
     private final RecipeService recipeService;
     private final BlogService blogService;
 
-    private final AccountService accountService;
-
     @GetMapping("/")
     public String getPage(Model model) {
+
         List<Recipe> recipes = recipeService.top6(); // топ-6 рецептов по рейтингу
         model.addAttribute("recipes", recipes);
         return "startPage";
@@ -37,6 +36,7 @@ public class StartPageController {
 
     @GetMapping("/oneRecipe/{recipe_id}")
     public String getOneRecipe(@PathVariable String recipe_id, Model model) {
+
         model.addAttribute("recipe_title", recipeService.getRecipeById(Long.valueOf(recipe_id)).getTitle());
         model.addAttribute("blog_title", blogService.getBlogByRecipeId(Long.valueOf(recipe_id)).getTitle());
         model.addAttribute("recipe_text", recipeService.getRecipeById(Long.valueOf(recipe_id)).getRecipe_text());
@@ -45,12 +45,14 @@ public class StartPageController {
 
     @GetMapping("/search")
     public String getSearch() {
+
         return "/searchPage";
     }
 
 
     @PostMapping("/search")
     public String postSearch(@RequestParam("search") String searchWord, Model model) {
+
         model.addAttribute("recipesS", recipeService.searchRecipe(searchWord));
         model.addAttribute("searchWord", searchWord);
         return "/searchPage";

@@ -16,6 +16,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 public class Image {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "image_id")
@@ -27,7 +28,7 @@ public class Image {
     @Lob
     private byte[] data;
 
-    @OneToOne(cascade = CascadeType.REFRESH)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 

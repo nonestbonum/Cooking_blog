@@ -1,12 +1,14 @@
-package com.example.cookingBlog.services;
+package com.example.cookingBlog.services.impl;
 
 import com.example.cookingBlog.dto.RecipeDto;
 import com.example.cookingBlog.models.Blog;
 import com.example.cookingBlog.models.Image;
 import com.example.cookingBlog.models.Recipe;
-import com.example.cookingBlog.repositories.BlogRepository;
 import com.example.cookingBlog.repositories.ImageRepository;
 import com.example.cookingBlog.repositories.RecipeRepository;
+import com.example.cookingBlog.services.BlogService;
+import com.example.cookingBlog.services.ImageService;
+import com.example.cookingBlog.services.RecipeService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -21,13 +24,17 @@ import java.util.List;
 @Service
 @Slf4j
 public class RecipeServiceImpl implements RecipeService {
+
     private final ImageRepository imageRepository;
     private final RecipeRepository recipeRepository;
     private final ImageService imageService;
-
+    private final BlogService blogService;
 
     @Override
-    public Recipe createRecipe(RecipeDto recipeDto) {
+    public void postNewRecipe(MultipartFile file, String title, String recipe_text, String id) throws IOException {
+
+        Image image = imageService.store(file);
+        RecipeDto recipeDto = new RecipeDto(title, recipe_text, image, blogService.getBlogById(Long.valueOf(id)));
         Recipe recipe = Recipe.builder()
                 .recipe_text(recipeDto.getRecipe_text())
                 .image(recipeDto.getImage())
@@ -35,11 +42,20 @@ public class RecipeServiceImpl implements RecipeService {
                 .blog(recipeDto.getBlog())
                 .build();
         recipeRepository.save(recipe);
-        return recipe;
+        imageService.setRec(recipe.getId(), image.getId());
+    }
+
+    @Override
+    public boolean isValidUsername(String newTitle) {
+
+        return newTitle.chars()
+                .mapToObj(Character.UnicodeBlock::of)
+                .anyMatch(b -> b.equals(Character.UnicodeBlock.BASIC_LATIN));
     }
 
     @Override
     public List<Recipe> top6() {
+
         return recipeRepository.top6();
     }
 
@@ -47,12 +63,13 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public void deleteRecipe(Long recipeId) {
-        imageRepository.deleteImageByRecipeId(recipeId);
+
         recipeRepository.deleteRecipeById(recipeId);
     }
 
     @Override
     public void vote(Long recipeId, int scores) {
+
         Recipe recipe = recipeRepository.getById(recipeId);
         double countOfVotes = recipe.getCountOfVotes();
         countOfVotes += 1;
@@ -67,21 +84,25 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     public Recipe getRecipeById(Long id) {
+
         return recipeRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Recipe> searchRecipe(String string) {
+
         return recipeRepository.findAllByKeyword(string);
     }
 
     @Override
     public List<Recipe> getRecipesByDateByOneBlog(Blog blog) {
+
         return recipeRepository.findAllByBlogOrderByDateOfCreateDesc(blog);
     }
 
     @Override
     public void setNewTitle(Long recId, String title) {
+
         Recipe recipe = recipeRepository.getById(recId);
         recipe.setTitle(title);
         recipeRepository.save(recipe);
@@ -91,15 +112,24 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public void setNewPicture(Long recId, MultipartFile file) {
+
         imageRepository.deleteImageByRecipeId(recId);
         Image image = imageService.store(file);
-        imageService.setRec(recId,image.getId());
+        imageService.setRec(recId, image.getId());
     }
 
     @Override
     public void updateRecipeText(Long recId, String recipeText) {
+
         Recipe recipe = recipeRepository.getById(recId);
         recipe.setRecipe_text(recipeText);
         recipeRepository.save(recipe);
+    }
+
+    @Override
+    public void changePost(String recipe_id, MultipartFile file, String title, String account_id) {
+
+        setNewTitle(Long.valueOf(recipe_id), title);
+        if (!file.isEmpty()) setNewPicture(Long.valueOf(recipe_id), file);
     }
 }

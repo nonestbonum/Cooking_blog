@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class RecipeDto {
+
     private String title;
     private String recipe_text;
     private Image image;

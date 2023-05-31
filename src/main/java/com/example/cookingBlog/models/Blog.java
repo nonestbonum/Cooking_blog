@@ -15,13 +15,13 @@ import java.util.List;
 @Entity
 @Table(name = "blog_table")
 public class Blog {
+
     @Id
     @Column(name = "blog_id")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "account_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Account account;
     @Column(name = "blog_title")
     private String title;
@@ -30,11 +30,7 @@ public class Blog {
     private List<Recipe> recipesList;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Comment> comments;
-
-//    @OneToMany(mappedBy = "blog")
-//    private List<Image> imageList;
 
     @PrePersist
     void defTitle(){

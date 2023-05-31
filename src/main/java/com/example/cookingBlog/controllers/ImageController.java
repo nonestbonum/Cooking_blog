@@ -18,11 +18,13 @@ import java.io.ByteArrayInputStream;
 @Controller
 @RequiredArgsConstructor
 public class ImageController {
+
     private final ImageRepository imageRepository;
     private final RecipeRepository recipeRepository;
 
     @GetMapping("/images/{id}")
     private ResponseEntity<?> getImageById(@PathVariable Long id) {
+
         Recipe recipe = recipeRepository.getById(id);
         Image image = imageRepository.getImageByRecipe(recipe);
         return ResponseEntity.ok()

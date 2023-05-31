@@ -37,9 +37,8 @@ public class Comment {
     @Column(columnDefinition = "text")
     private String comment_text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "recipe_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Recipe recipe;
 
     private LocalDateTime dateOfCreate;

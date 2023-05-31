@@ -1,7 +1,8 @@
-package com.example.cookingBlog.services;
+package com.example.cookingBlog.services.impl;
 
 import com.example.cookingBlog.dto.SignInForm;
 import com.example.cookingBlog.repositories.AccountsRepository;
+import com.example.cookingBlog.services.SignInService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public class SignInServiceImpl implements SignInService {
 
     @Override
     public boolean signIn(SignInForm signInForm) {
+
         return accountsRepository.existsAccountByEmailAndPassword(signInForm.getEmail(),passwordEncoder.encode(signInForm.getPassword()));
     }
 }
